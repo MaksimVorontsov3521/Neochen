@@ -22,6 +22,7 @@ namespace Points
         Canvas canvas = new Canvas();
         Rectangle rectangle = new Rectangle();
         int[,] fild = new int[500, 500];
+        bool down = true;
         public Jump()
         {
             InitializeComponent();
@@ -49,16 +50,71 @@ namespace Points
                     await Task.Delay(10);
                 block[1]++;
                 block[3]++;
-                block[0] += LR;
-                block[2] += LR;
+                block[0] = block[0] + LR;
+                block[2] = block[2] + LR;
             }
-            touch();
+            down = true;
+            touch(rec2,block);
         }
-        async void touch()
+        async void touch(Rectangle rec2,int[] block)
         {
-        
+            Random random = new Random();
+            int LR = 0;
+            if (block[1]<10)
+            {
+                LR = random.Next(-5, 5);
+                fall(rec2,block,LR);
+            }
+            else if (block[3] > 490)
+            {
+                LR = random.Next(-5, 5);
+                up(rec2, block, LR);
+            }
+            else if (block[0]<10)
+            {
+                block[2] += 2;
+                block[0] += 2;
+                LR = random.Next(1, 5);
+                if (down == true)
+                {
+                    fall(rec2, block, LR);
+                }
+                else
+                {
+                    up(rec2, block, LR);
+                }
+            }
+            else if (block[2]>490)
+            {
+                block[2] += -2;
+                block[0] += -2;
+                LR = random.Next(-5,-1);
+                if (down == true)
+                {
+                    fall(rec2, block, LR);
+                }
+                else
+                {
+                    up(rec2, block, LR);
+                }
+            }                
         }
+        async void up(Rectangle rec2, int[] block, int LR)
+        {
+            while (block[1] > 0 && block[0] > 0 && block[2] < 500)
+            {
+                Canvas.SetTop(rec2, block[1]);
+                Canvas.SetLeft(rec2, block[0]);
+                await Task.Delay(1);
+                block[1]--;
+                block[3]--;
+                block[0] = block[0] + LR;
+                block[2] = block[2] + LR;
+            }
+            down = false;
+            touch(rec2, block);
             
+        }
         private void DrawOnCanvas()
         {
             // Создаем элемент Canvas
