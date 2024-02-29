@@ -40,6 +40,20 @@ namespace Points
             Canvas.SetTop(rec2, 200);
             canvas.Children.Add(rec2);
             fall(rec2,block,0);
+            rdblock();
+        }
+        async void rdblock()
+        {
+            await Task.Delay(1000);
+            int[] block2 = { 200, 200, 210, 210 };
+            Rectangle rec3 = new Rectangle();
+            rec3.Width = 10;
+            rec3.Height = 10;
+            rec3.Fill = Brushes.Green;
+            Canvas.SetLeft(rec3, 200);
+            Canvas.SetTop(rec3, 200);
+            canvas.Children.Add(rec3);
+            fall(rec3, block2, 0);
         }
         async void fall(Rectangle rec2, int[] block,int LR)
         {
