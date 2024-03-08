@@ -16,6 +16,8 @@ X:\program\Points\Points\obj\Debug\Points.pdb
 X:\program\Points\Points\obj\Debug\Window1.g.cs
 X:\program\Points\Points\obj\Debug\Window1.baml
 X:\program\Points\Points\obj\Debug\Jump.g.cs
-X:\program\Points\Points\obj\Debug\Math.g.cs
 X:\program\Points\Points\obj\Debug\Jump.baml
-X:\program\Points\Points\obj\Debug\Math.baml
+X:\program\Points\Points\obj\Debug\Cube.g.cs
+X:\program\Points\Points\obj\Debug\Cube.baml
+X:\program\Points\Points\obj\Debug\Snake.g.cs
+X:\program\Points\Points\obj\Debug\Snake.baml

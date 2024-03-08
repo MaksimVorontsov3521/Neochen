@@ -41,5 +41,18 @@ namespace Points
             Jump jump = new Jump();
             jump.Show();
         }
+
+
+        private void Cube_button_Click(object sender, RoutedEventArgs e)
+        {
+            Cube cube = new Cube();
+            cube.Show();
+        }
+
+        private void Snake_Click(object sender, RoutedEventArgs e)
+        {
+            Snake snake = new Snake();
+            snake.Show();
+        }
     }
 }
