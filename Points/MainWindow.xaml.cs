@@ -45,8 +45,9 @@ namespace Points
 
         private void Cube_button_Click(object sender, RoutedEventArgs e)
         {
-            Cube cube = new Cube();
-            cube.Show();
+            MessageBox.Show("Мне не удалась перевести с С++ на C#. с++ код по ссылке в файле");
+            //Cube cube = new Cube();
+            //cube.Show();
         }
 
         private void Snake_Click(object sender, RoutedEventArgs e)
