@@ -10,7 +10,7 @@
         <Button x:Name="BigFallsend" Content="BigSand" HorizontalAlignment="Left" Height="42" Margin="10,10,0,0" VerticalAlignment="Top" Width="106" Click="BigFallsend_Click"/>
         <Button x:Name="SmallSand" Content="SmallSand" HorizontalAlignment="Left" Height="42" Margin="10,70,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click" IsCancel="True"/>
         <Button x:Name="Jump_but" Content="Jump" HorizontalAlignment="Left" Margin="161,10,0,0" VerticalAlignment="Top" Width="106" Height="42" Click="Jump_Click"/>
-        <Button x:Name="Cube_button" Content="Cube" HorizontalAlignment="Left" Height="42" Margin="161,70,0,0" VerticalAlignment="Top" Width="106" Click="Cube_button_Click"/>
+        <Button x:Name="Cube_button" Content="Cube" HorizontalAlignment="Left" Height="42" Margin="161,70,0,0" VerticalAlignment="Top" Width="106" Click="Cube_button_Click" BorderBrush="Black" Background="Red"/>
         <Button x:Name="Snake" Content="Snake" HorizontalAlignment="Left" Height="42" Margin="316,10,0,0" VerticalAlignment="Top" Width="106" Click="Snake_Click"/>
     </Grid>
 </Window>
