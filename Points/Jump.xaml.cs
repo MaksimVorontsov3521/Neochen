@@ -17,16 +17,31 @@ namespace Points
     /// <summary>
     /// Логика взаимодействия для Jump.xaml
     /// </summary>
+    /// 
+
     public partial class Jump : Window
     {
-        Canvas canvas = new Canvas();
+        public Canvas canvas = new Canvas();
         Rectangle rectangle = new Rectangle();
-        int[,] fild = new int[500, 500];
+        //int[,] fild = new int[500, 500];
         bool down = true;
         public Jump()
         {
             InitializeComponent();
-            DrawOnCanvas();        
+            DrawOnCanvas();
+            spawn();
+        }
+        async void spawn()
+        {
+            center();
+            await Task.Delay(2000);
+            center();
+            await Task.Delay(2000);
+            center();
+            await Task.Delay(2000);
+            center();
+            await Task.Delay(2000);
+            center();
         }
         private void center()
         {
@@ -55,10 +70,10 @@ namespace Points
             canvas.Children.Add(rec3);
             fall(rec3, block2, 0);
         }
-        async void fall(Rectangle rec2, int[] block,int LR)
+        public async void fall(Rectangle rec2, int[] block,int LR)
         {
             while (block[3] < 500 && block[0] > 0 && block[2]<500)
-            {
+            { 
                     Canvas.SetTop(rec2, block[1]);
                     Canvas.SetLeft(rec2, block[0]);
                     await Task.Delay(10);
@@ -74,17 +89,17 @@ namespace Points
         {
             Random random = new Random();
             int LR = 0;
-            if (block[1]<10)
+            if (block[1] < 1)
             {
                 LR = random.Next(-5, 5);
-                fall(rec2,block,LR);
+                fall(rec2, block, LR);             
             }
-            else if (block[3] > 490)
+            else if (block[3] > 499)
             {
                 LR = random.Next(-5, 5);
                 up(rec2, block, LR);
             }
-            else if (block[0]<10)
+            else if (block[0] < 10)
             {
                 block[2] += 2;
                 block[0] += 2;
@@ -98,11 +113,11 @@ namespace Points
                     up(rec2, block, LR);
                 }
             }
-            else if (block[2]>490)
+            else if (block[2] > 490)
             {
                 block[2] += -2;
                 block[0] += -2;
-                LR = random.Next(-5,-1);
+                LR = random.Next(-5, -1);
                 if (down == true)
                 {
                     fall(rec2, block, LR);
@@ -111,7 +126,7 @@ namespace Points
                 {
                     up(rec2, block, LR);
                 }
-            }                
+            }
         }
         async void up(Rectangle rec2, int[] block, int LR)
         {

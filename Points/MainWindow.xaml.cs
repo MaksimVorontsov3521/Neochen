@@ -55,5 +55,10 @@ namespace Points
             Snake snake = new Snake();
             snake.Show();
         }
+
+        private void liquid_Click(object sender, RoutedEventArgs e)
+        {
+            //взять песок и сделать скольжение до границы из '1'
+        }
     }
 }

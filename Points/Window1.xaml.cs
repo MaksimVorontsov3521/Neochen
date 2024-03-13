@@ -82,13 +82,57 @@ namespace Points
                 {
                     fild[x + i, a - s] = 1;
                 }
-
+                //slide(rec2, x, a);
             }
             catch
             {
 
             }
         }
+        async void slide(Rectangle rec2,int x,int a)
+        {
+            int lr=Random.Next(-1,2);
+            if (lr==0)
+            {
+                lr = 1;
+            }
+            try
+            {
+                if (fild[x, a-(499-a)] == 1 & fild[x++, a - (499 - a)] == 1 & fild[x++, a - (499 - a)] == 1)
+                {
+
+                }
+                else
+                {
+                    for (int j = 0; j < 499 - a; j++)
+                    {
+                        x += lr;
+                        //Canvas.SetLeft(rec2, x);
+                        for (int i = a; fild[x, i] != 1; i++)
+                        {
+                            Canvas.SetTop(rec2, i);
+                            Canvas.SetLeft(rec2, x);
+                            await Task.Delay(10);
+                            a = i;
+                        }
+                        for (int i = 0; i < s; i++)
+                        {
+                            fild[x, a - i] = 1;
+                        }
+                        for (int i = 0; i < s; i++)
+                        {
+                            fild[x + i, a - s] = 1;
+                        }
+
+                    }
+                }
+            }
+            catch
+            { 
+            
+            }
+        }
+        Random Random = new Random();
         private void DrawOnCanvas()
         {
             // Создаем элемент Canvas
