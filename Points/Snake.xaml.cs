@@ -22,20 +22,21 @@ namespace Points
     public class TheSnake
     {
         public int numebr;
-        public Rectangle part = new Rectangle();
-        protected int[,] coordinates = new int[2,2];
-        public bool a = true;
-        public void collisia()
-        { 
         
-        }
-    }
-
+        protected int[,] coordinates = new int[2,2];
+        public bool a = true;        
+    } 
     public class SnakesHead : TheSnake
     {
+        public int[] food;
         public int[] adirection;
-        public SnakesHead(int[] direction,Canvas canvas)
+        Rectangle apple = new Rectangle();
+        
+        public SnakesHead(int[] direction,Canvas canvas,ref Rectangle apple)
         {
+            this.apple = apple;
+            food = newapple();
+            Rectangle part = new Rectangle();
             this.adirection = direction;
             part.Fill = Brushes.DarkGreen;
             part.Width = 15;
@@ -49,11 +50,60 @@ namespace Points
             coordinates[0, 1] = 100; 
             coordinates[1, 1] = 115;
             canvas.Children.Add(part);
-            move(adirection);
+            move(adirection,part);
             numebr = 0;
         }
-        async void move(int[] direction)
+
+        public int[] newapple()
         {
+            Random random = new Random();
+            int[] xy = new int[2];
+            xy[0] = random.Next(10, 240);
+            xy[1] = random.Next(10, 240);
+            apple.Width = 5;
+            apple.Height = 5;
+            apple.Fill = Brushes.Red;
+            Canvas.SetLeft(apple, xy[0]);
+            Canvas.SetTop(apple, xy[1]);
+            return xy;
+        }
+
+        public void colisia()
+        {
+            bool cx = false, cy = false;
+            for (int i = coordinates[0, 0]; i < coordinates[1, 0]; i++)
+            {
+                if (food[0] == i)
+                {
+                    cx = true;
+                    break;
+                }
+                else
+                {
+                    cx = false;
+                }
+            }
+            for (int i = coordinates[0, 1]; i < coordinates[1, 1]; i++)
+            {
+                if (food[1] == i)
+                {
+                    cy = true;
+                    break;
+                }
+                else
+                {
+                    cy = false;
+                }
+            }
+            if (cx == true & cy == true)
+            {
+                food = newapple();               
+                cx = false;
+                cy = false;
+            }
+        }
+        async void move(int[] direction,Rectangle part)
+        {            
             int sped = 10;
             while (a==true)
             {               
@@ -64,16 +114,19 @@ namespace Points
                 await Task.Delay(sped);
                 Canvas.SetLeft(part, coordinates[0, 0]);
                 Canvas.SetTop(part, coordinates[0, 1]);
+                colisia();
                 if (coordinates[0, 0] < 0 || coordinates[0, 1] < 0 || coordinates[1, 0] > 250 || coordinates[1, 1] > 250)
-                {
+                {                   
                     a = false;
                     MessageBox.Show("Вы проиграли");
+                    break;
                 }
             }
         }
     }
+    
     public partial class Snake : Window
-    {//                     x   y
+    { 
         int[] direction = { 0, 1 };
         Canvas canvas = new Canvas();
         Rectangle rectangle = new Rectangle();
@@ -82,12 +135,14 @@ namespace Points
         Rectangle down = new Rectangle();
         Rectangle up = new Rectangle();
         SnakesHead snake;
+        Rectangle apple = new Rectangle();
         public Snake()
         {
             InitializeComponent();
-            DrawOnCanvas();            
+                              
             this.KeyDown += fourDirections;
-            SnakesHead snake = new SnakesHead(direction, canvas);
+            DrawOnCanvas();
+            SnakesHead snake = new SnakesHead(direction, canvas,ref apple);           
             this.snake=snake;
         }
         private void fourDirections(object sender, KeyEventArgs e)
@@ -117,6 +172,12 @@ namespace Points
                     break;
             }
         }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void allblue()
         {
             left.Fill = Brushes.Blue;
@@ -135,7 +196,8 @@ namespace Points
             Canvas.SetLeft(rectangle, 0);
             Canvas.SetTop(rectangle, 0);
 
-           //move
+
+            //move
             left.Width = 50;
             left.Height = 50;
             left.Fill = Brushes.Blue;
@@ -184,7 +246,7 @@ namespace Points
             ub.Y1 = 0;
             ub.X2 = 250;
             ub.Y2 = 0;
-            //add
+            //add          
             canvas.Children.Add(rectangle);
             canvas.Children.Add(left);
             canvas.Children.Add(right);
@@ -194,6 +256,7 @@ namespace Points
             canvas.Children.Add(rb);
             canvas.Children.Add(db);
             canvas.Children.Add(ub);
+            canvas.Children.Add(apple);
             this.Content = canvas;
         }
     }
