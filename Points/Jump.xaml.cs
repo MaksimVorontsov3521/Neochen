@@ -42,6 +42,10 @@ namespace Points
             center();
             await Task.Delay(2000);
             center();
+            await Task.Delay(2000);
+            center();
+            await Task.Delay(2000);
+            center();
         }
         private void center()
         {

@@ -11,7 +11,8 @@
         <Button x:Name="SmallSand" Content="SmallBlock" HorizontalAlignment="Left" Height="42" Margin="10,70,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click" IsCancel="True"/>
         <Button x:Name="Jump_but" Content="Jump" HorizontalAlignment="Left" Margin="161,10,0,0" VerticalAlignment="Top" Width="106" Height="42" Click="Jump_Click"/>
         <Button x:Name="Cube_button" Content="Cube" HorizontalAlignment="Left" Height="42" Margin="161,70,0,0" VerticalAlignment="Top" Width="106" Click="Cube_button_Click" BorderBrush="Black" Background="Red"/>
-        <Button x:Name="Snake" Content="Snake" HorizontalAlignment="Left" Height="42" Margin="316,10,0,0" VerticalAlignment="Top" Width="106" Click="Snake_Click"/>
-        <Button x:Name="liquid" Content="liquid" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="106" Height="41" Click="liquid_Click"/>
+        <Button x:Name="Snake" Content="Eat points" HorizontalAlignment="Left" Height="42" Margin="316,10,0,0" VerticalAlignment="Top" Width="106" Click="Snake_Click"/>
+        <Button x:Name="CandelBtt" Content="Candedl" HorizontalAlignment="Left" Margin="335,81,0,0" VerticalAlignment="Top" Width="75" Click="CandelBtt_Click_1"/>
+        <Button x:Name="Button7" Content="Sound" HorizontalAlignment="Left" Margin="458,21,0,0" VerticalAlignment="Top" Width="75" Click="Button7_Click"/>
     </Grid>
 </Window>

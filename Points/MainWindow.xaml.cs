@@ -45,20 +45,28 @@ namespace Points
 
         private void Cube_button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Мне не удалась перевести с С++ на C#. с++ код по ссылке в файле");
-            //Cube cube = new Cube();
-            //cube.Show();
+            //"Мне не удалась перевести с С++ на C#. с++ код по ссылке в файле я не очень умный
+            Cube cube = new Cube();
+            cube.Show();
         }
 
         private void Snake_Click(object sender, RoutedEventArgs e)
         {
+            // я сам себя переиграл и сделал слишком сложно для доьавления хвоста
             Snake snake = new Snake();
             snake.Show();
         }
 
-        private void liquid_Click(object sender, RoutedEventArgs e)
+        private void CandelBtt_Click_1(object sender, RoutedEventArgs e)
         {
-            //взять песок и сделать скольжение до границы из '1'
+            Candel candel = new Candel();
+            candel.Show();
+        }
+
+        private void Button7_Click(object sender, RoutedEventArgs e)
+        {
+            Sounds sounds = new Sounds();
+            sounds.Show();
         }
     }
 }

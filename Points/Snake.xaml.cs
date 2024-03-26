@@ -21,16 +21,16 @@ namespace Points
 
     public class TheSnake
     {
-        public int numebr;
-        
+        protected int tail = 1;
         protected int[,] coordinates = new int[2,2];
         public bool a = true;        
-    } 
+    }
     public class SnakesHead : TheSnake
     {
         public int[] food;
         public int[] adirection;
         Rectangle apple = new Rectangle();
+
         
         public SnakesHead(int[] direction,Canvas canvas,ref Rectangle apple)
         {
@@ -51,7 +51,7 @@ namespace Points
             coordinates[1, 1] = 115;
             canvas.Children.Add(part);
             move(adirection,part);
-            numebr = 0;
+
         }
 
         public int[] newapple()
@@ -97,28 +97,29 @@ namespace Points
             }
             if (cx == true & cy == true)
             {
-                food = newapple();               
+                food = newapple();
+                tail++;
                 cx = false;
                 cy = false;
             }
         }
         async void move(int[] direction,Rectangle part)
         {            
-            int sped = 10;
+            
             while (a==true)
             {               
-                coordinates[0, 0] += direction[0];
-                coordinates[1, 0] += direction[0];
-                coordinates[0, 1] += direction[1];
-                coordinates[1, 1] += direction[1];
-                await Task.Delay(sped);
+                coordinates[0, 0] += direction[0] * Convert.ToInt32(tail);
+                coordinates[1, 0] += direction[0] * Convert.ToInt32(tail);
+                coordinates[0, 1] += direction[1] * Convert.ToInt32(tail);
+                coordinates[1, 1] += direction[1] * Convert.ToInt32(tail);
+                await Task.Delay(1);
                 Canvas.SetLeft(part, coordinates[0, 0]);
                 Canvas.SetTop(part, coordinates[0, 1]);
                 colisia();
                 if (coordinates[0, 0] < 0 || coordinates[0, 1] < 0 || coordinates[1, 0] > 250 || coordinates[1, 1] > 250)
                 {                   
                     a = false;
-                    MessageBox.Show("Вы проиграли");
+                    MessageBox.Show("Вы проиграли счёт - "+ (tail-1));
                     break;
                 }
             }
@@ -127,7 +128,7 @@ namespace Points
     
     public partial class Snake : Window
     { 
-        int[] direction = { 0, 1 };
+        protected int[] direction = { 0, 1 };
         Canvas canvas = new Canvas();
         Rectangle rectangle = new Rectangle();
         Rectangle left = new Rectangle();
@@ -154,27 +155,28 @@ namespace Points
                     up.Fill = Brushes.Red;
                     snake.adirection[0] = 0;
                     snake.adirection[1] = -1;
+ 
                     break;
                 case Key.S:
                     down.Fill = Brushes.Red;
                     snake.adirection[0] = 0;
                     snake.adirection[1] = 1;
+   
                     break;
                 case Key.D:
                     right.Fill = Brushes.Red;
                     snake.adirection[0] = 1;
                     snake.adirection[1] = 0;
+                 
                     break;
                 case Key.A:
                     left.Fill = Brushes.Red;
                     snake.adirection[0] = -1;
                     snake.adirection[1] = 0;
+             
                     break;
             }
         }
-
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -185,7 +187,7 @@ namespace Points
             down.Fill = Brushes.Blue;
             up.Fill = Brushes.Blue;
         }
-        private void DrawOnCanvas()
+        public void DrawOnCanvas()
         {
             canvas.Width = 500;
             canvas.Height = 500;
