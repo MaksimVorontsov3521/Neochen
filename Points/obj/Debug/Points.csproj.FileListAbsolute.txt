@@ -37,7 +37,6 @@ X:\program\Points\Points\bin\Debug\System.Text.Encodings.Web.dll
 X:\program\Points\Points\bin\Debug\System.Text.Json.dll
 X:\program\Points\Points\bin\Debug\System.Threading.Tasks.Extensions.dll
 X:\program\Points\Points\bin\Debug\System.ValueTuple.dll
-X:\program\Points\Points\bin\Debug\YoutubeExplode.dll
 X:\program\Points\Points\bin\Debug\AngleSharp.xml
 X:\program\Points\Points\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 X:\program\Points\Points\bin\Debug\System.Buffers.xml
@@ -49,5 +48,6 @@ X:\program\Points\Points\bin\Debug\System.Text.Encodings.Web.xml
 X:\program\Points\Points\bin\Debug\System.Text.Json.xml
 X:\program\Points\Points\bin\Debug\System.Threading.Tasks.Extensions.xml
 X:\program\Points\Points\bin\Debug\System.ValueTuple.xml
-X:\program\Points\Points\bin\Debug\YoutubeExplode.xml
 X:\program\Points\Points\obj\Debug\Points.csproj.CopyComplete
+X:\program\Points\Points\obj\Debug\2Arrays.g.cs
+X:\program\Points\Points\obj\Debug\2Arrays.baml
