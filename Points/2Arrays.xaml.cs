@@ -19,19 +19,17 @@ namespace Points
     /// </summary>
     public partial class _2Arrays : Window
     {
-        private int num = 100;
-        public _2Arrays(int num)
+        private int num;
+        public _2Arrays()
         {
-            InitializeComponent();         
-            updatelength();
-            startwork();
+            InitializeComponent();
         }
         public void updatelength()
         {
-            LengthArray.Content = num;
-            startwork();
+            LengthArray.Content = Num;
             newone.Value = 0;
             newtwo.Value = 0;
+            startwork();
         }
         public int Num
         {
@@ -49,16 +47,17 @@ namespace Points
         }
         async Task startwork()
         {
+            
            createArray(newone);
            createArray(newtwo);
         }
         async void createArray(ProgressBar bar)
         {
-            int[] array = new int[num];
+            int[] array = new int[Num];
             Random random = new Random();
-            int progres=0;
-            bar.Value = progres;
-            for (int i = 0; i < num; i++)
+            bar.Maximum=array.Length;
+            int progres = 0;
+            for (int i = 0; i < Num; i++)
             {
                 array[i] = random.Next(0, 100);
                 progres += 1;

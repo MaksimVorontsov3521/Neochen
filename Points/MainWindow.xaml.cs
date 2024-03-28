@@ -70,32 +70,34 @@ namespace Points
         }
         _2Arrays _2Arrays = null;
         private void Paralel_Click(object sender, RoutedEventArgs e)
-        {
-            int a=100;
-            try 
-            {
-                a=Convert.ToInt32(Number_0.Text);
-            }
-            catch
-            { 
-            
-            }           
-            _2Arrays _2Arrays = new _2Arrays(a);
+        {          
+            _2Arrays _2Arrays = new _2Arrays();
             this._2Arrays = _2Arrays;
+            uodateparalel();         
             _2Arrays.Show();
+        }
+
+        private void uodateparalel()
+        {
+            if (_2Arrays == null)
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    this._2Arrays.Num = Convert.ToInt32(Number_0.Text);
+                    _2Arrays.updatelength();
+                }
+                catch
+                { }
+            }
         }
 
         private void Pararelupdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                this._2Arrays.Num = Convert.ToInt32(Number_0.Text);
-            }
-            catch
-            {
-
-            }
-            _2Arrays.updatelength();
+            uodateparalel();
         }
     }
 }
