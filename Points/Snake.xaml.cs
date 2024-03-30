@@ -22,18 +22,73 @@ namespace Points
     public class TheSnake
     {
         protected int tail = 1;
-        protected int[,] coordinates = new int[2,2];
-        public bool a = true;        
+        public int[,] coordinates = new int[2,2];
+        public bool a = true;
+        public TheSnake son;
+
     }
     public class SnakesHead : TheSnake
     {
         public int[] food;
         public int[] adirection;
         Rectangle apple = new Rectangle();
+        private TheSnake TheSnake = new TheSnake();
+        private void newsnake(TheSnake TheSnake)
+        {
+            //TheSnake lasttail=LastTail(TheSnake);
+            TheSnake = Addtail(TheSnake,null);
+        }
 
-        
+        async void movetail(Rectangle part,TheSnake the)
+        {
+            await Task.Delay(1);
+            while (a == true)
+            {
+                the.coordinates[0, 0] += adirection[0];
+                the.coordinates[1, 0] += adirection[0];
+                the.coordinates[0, 1] += adirection[1];
+                the.coordinates[1, 1] += adirection[1];
+                await Task.Delay(1);
+                Canvas.SetLeft(part, the.coordinates[0, 0]);
+                Canvas.SetTop(part, the.coordinates[0, 1]);               
+            }
+        }
+        private TheSnake Addtail(TheSnake TheSnake,TheSnake lasttail)
+        {
+            if (TheSnake == null)
+            {
+                TheSnake the = new TheSnake();
+                the.coordinates[0, 0] = lasttail.coordinates[0, 0] + 15;
+                the.coordinates[0, 1] = lasttail.coordinates[0, 1] + 15;
+                the.coordinates[1, 1] = lasttail.coordinates[1, 1];
+                the.coordinates[1, 0] = lasttail.coordinates[1, 0];                
+                Rectangle part = new Rectangle();
+                part.Fill = Brushes.Red;
+                part.Width = 15;
+                part.Height = 15;
+                Canvas.SetLeft(part,the.coordinates[0,0] );
+                Canvas.SetTop(part, the.coordinates[0,1] );
+                canvas1.Children.Add(part);
+                movetail(part,the);
+                return the;
+            }
+            TheSnake.son = Addtail(TheSnake.son,TheSnake);
+            return TheSnake;
+        }
+        private TheSnake LastTail(TheSnake TheSnake)
+        {
+            if (TheSnake.son == null)
+            {
+                return TheSnake;
+            }
+            LastTail(TheSnake.son);
+            return TheSnake;
+        }
+        public Canvas canvas1;      
         public SnakesHead(int[] direction,Canvas canvas,ref Rectangle apple)
         {
+            this.canvas1 = canvas;
+            canvas = this.canvas1;
             this.apple = apple;
             food = newapple();
             Rectangle part = new Rectangle();
@@ -49,6 +104,7 @@ namespace Points
             coordinates[1, 0] = 115; 
             coordinates[0, 1] = 100; 
             coordinates[1, 1] = 115;
+            
             canvas.Children.Add(part);
             move(adirection,part);
 
@@ -98,6 +154,8 @@ namespace Points
             if (cx == true & cy == true)
             {
                 food = newapple();
+                TheSnake.coordinates = coordinates;
+                newsnake(TheSnake);
                 tail++;
                 cx = false;
                 cy = false;
@@ -107,11 +165,11 @@ namespace Points
         {            
             
             while (a==true)
-            {               
-                coordinates[0, 0] += direction[0] * Convert.ToInt32(tail);
-                coordinates[1, 0] += direction[0] * Convert.ToInt32(tail);
-                coordinates[0, 1] += direction[1] * Convert.ToInt32(tail);
-                coordinates[1, 1] += direction[1] * Convert.ToInt32(tail);
+            {
+                coordinates[0, 0] += direction[0];
+                coordinates[1, 0] += direction[0];
+                coordinates[0, 1] += direction[1];
+                coordinates[1, 1] += direction[1];
                 await Task.Delay(1);
                 Canvas.SetLeft(part, coordinates[0, 0]);
                 Canvas.SetTop(part, coordinates[0, 1]);
@@ -119,7 +177,7 @@ namespace Points
                 if (coordinates[0, 0] < 0 || coordinates[0, 1] < 0 || coordinates[1, 0] > 250 || coordinates[1, 1] > 250)
                 {                   
                     a = false;
-                    MessageBox.Show("Вы проиграли счёт - "+ (tail-1));
+                    MessageBox.Show("Вы проиграли счёт - "+ (tail-1));                   
                     break;
                 }
             }
@@ -129,7 +187,7 @@ namespace Points
     public partial class Snake : Window
     { 
         protected int[] direction = { 0, 1 };
-        Canvas canvas = new Canvas();
+        public Canvas canvas = new Canvas();
         Rectangle rectangle = new Rectangle();
         Rectangle left = new Rectangle();
         Rectangle right = new Rectangle();
@@ -140,10 +198,9 @@ namespace Points
         public Snake()
         {
             InitializeComponent();
-                              
             this.KeyDown += fourDirections;
             DrawOnCanvas();
-            SnakesHead snake = new SnakesHead(direction, canvas,ref apple);           
+            SnakesHead snake = new SnakesHead(direction, canvas,ref apple);         
             this.snake=snake;
         }
         private void fourDirections(object sender, KeyEventArgs e)
