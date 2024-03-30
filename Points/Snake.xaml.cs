@@ -32,13 +32,13 @@ namespace Points
         public int[] adirection;
         Rectangle apple = new Rectangle();
         private TheSnake TheSnake = new TheSnake();
-        private void newsnake(TheSnake TheSnake)
+        private void newsnake(TheSnake TheSnake,TheSnake TheHead)
         {
             //TheSnake lasttail=LastTail(TheSnake);
-            TheSnake = Addtail(TheSnake,null);
+            TheSnake = Addtail(TheSnake,null,TheHead);
         }
 
-        async void movetail(Rectangle part,TheSnake the,TheSnake father)
+        async void movetail(Rectangle part,TheSnake the,TheSnake father,TheSnake head)
         {
             await Task.Delay(1);
             int[,] boof = new int[2, 2];
@@ -52,10 +52,45 @@ namespace Points
                 the.coordinates[1, 1] = boof[1, 1];
                 await Task.Delay(1);
                 Canvas.SetLeft(part, the.coordinates[0, 0]);
-                Canvas.SetTop(part, the.coordinates[0, 1]);               
+                Canvas.SetTop(part, the.coordinates[0, 1]);
+                a=endgame(head,the);
             }
         }
-        private TheSnake Addtail(TheSnake TheSnake,TheSnake lasttail)
+        bool endgame(TheSnake head,TheSnake the)
+        {
+            bool cx = false, cy = false;
+            for (int i = head.coordinates[0, 0]; i < head.coordinates[1, 0]; i++)
+            {
+                if (the.coordinates[1,0] == i)
+                {
+                    cx = true;
+                    break;
+                }
+                else
+                {
+                    cx = false;
+                }
+            }
+            for (int i = head.coordinates[0, 1]; i < head.coordinates[1, 1]; i++)
+            {
+                if (the.coordinates[0, 1] == i)
+                {
+                    cy = true;
+                    break;
+                }
+                else
+                {
+                    cy = false;
+                }
+            }
+            if (cx == true & cy == true)
+            {
+                MessageBox.Show("Fuck you");
+                return false;
+            }
+            return true;
+        }
+        private TheSnake Addtail(TheSnake TheSnake,TheSnake lasttail,TheSnake TheHead)
         {
             if (TheSnake == null)
             {
@@ -65,16 +100,16 @@ namespace Points
                 the.coordinates[1, 1] = lasttail.coordinates[1, 1];
                 the.coordinates[1, 0] = lasttail.coordinates[1, 0];                
                 Rectangle part = new Rectangle();
-                part.Fill = Brushes.Red;
+                part.Fill = Brushes.Blue;
                 part.Width = 15;
                 part.Height = 15;
                 Canvas.SetLeft(part,the.coordinates[0,0] );
                 Canvas.SetTop(part, the.coordinates[0,1] );
                 canvas1.Children.Add(part);
-                movetail(part,the,lasttail);
+                movetail(part,the,lasttail,TheHead);
                 return the;
             }
-            TheSnake.son = Addtail(TheSnake.son,TheSnake);
+            TheSnake.son = Addtail(TheSnake.son,TheSnake,TheHead);
             return TheSnake;
         }
         public Canvas canvas1;      
@@ -148,7 +183,7 @@ namespace Points
             {
                 food = newapple();
                 TheSnake.coordinates = coordinates;
-                newsnake(TheSnake);
+                newsnake(TheSnake,TheSnake);
                 tail++;
                 cx = false;
                 cy = false;
