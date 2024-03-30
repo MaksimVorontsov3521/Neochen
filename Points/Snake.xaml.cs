@@ -25,7 +25,6 @@ namespace Points
         public int[,] coordinates = new int[2,2];
         public bool a = true;
         public TheSnake son;
-
     }
     public class SnakesHead : TheSnake
     {
@@ -39,15 +38,18 @@ namespace Points
             TheSnake = Addtail(TheSnake,null);
         }
 
-        async void movetail(Rectangle part,TheSnake the)
+        async void movetail(Rectangle part,TheSnake the,TheSnake father)
         {
             await Task.Delay(1);
+            int[,] boof = new int[2, 2];
             while (a == true)
             {
-                the.coordinates[0, 0] += adirection[0];
-                the.coordinates[1, 0] += adirection[0];
-                the.coordinates[0, 1] += adirection[1];
-                the.coordinates[1, 1] += adirection[1];
+                boof = father.coordinates;
+                await Task.Delay(250);
+                the.coordinates[0, 0] = boof[0, 0];
+                the.coordinates[1, 0] = boof[1, 0];
+                the.coordinates[0, 1] = boof[0, 1];
+                the.coordinates[1, 1] = boof[1, 1];
                 await Task.Delay(1);
                 Canvas.SetLeft(part, the.coordinates[0, 0]);
                 Canvas.SetTop(part, the.coordinates[0, 1]);               
@@ -58,8 +60,8 @@ namespace Points
             if (TheSnake == null)
             {
                 TheSnake the = new TheSnake();
-                the.coordinates[0, 0] = lasttail.coordinates[0, 0] + 15;
-                the.coordinates[0, 1] = lasttail.coordinates[0, 1] + 15;
+                the.coordinates[0, 0] = lasttail.coordinates[0, 0];
+                the.coordinates[0, 1] = lasttail.coordinates[0, 1];
                 the.coordinates[1, 1] = lasttail.coordinates[1, 1];
                 the.coordinates[1, 0] = lasttail.coordinates[1, 0];                
                 Rectangle part = new Rectangle();
@@ -69,19 +71,10 @@ namespace Points
                 Canvas.SetLeft(part,the.coordinates[0,0] );
                 Canvas.SetTop(part, the.coordinates[0,1] );
                 canvas1.Children.Add(part);
-                movetail(part,the);
+                movetail(part,the,lasttail);
                 return the;
             }
             TheSnake.son = Addtail(TheSnake.son,TheSnake);
-            return TheSnake;
-        }
-        private TheSnake LastTail(TheSnake TheSnake)
-        {
-            if (TheSnake.son == null)
-            {
-                return TheSnake;
-            }
-            LastTail(TheSnake.son);
             return TheSnake;
         }
         public Canvas canvas1;      
