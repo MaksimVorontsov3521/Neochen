@@ -17,5 +17,6 @@
         <Button x:Name="Paralel" Content="Paralel new" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="75" Click="Paralel_Click"/>
         <TextBox x:Name="Number_0" HorizontalAlignment="Left" Height="23" Margin="10,172,0,0" TextWrapping="Wrap" Text="Number &gt;= 100" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="Pararelupdate" Content="Update" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="75" Click="Pararelupdate_Click"/>
+        <Button x:Name="Matrix" Content="matrix" HorizontalAlignment="Left" Margin="458,81,0,0" VerticalAlignment="Top" Width="75" Click="Matrix_Click"/>
     </Grid>
 </Window>

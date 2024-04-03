@@ -136,6 +136,9 @@
     <Compile Include="Jump.xaml.cs">
       <DependentUpon>Jump.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mathmatrix.xaml.cs">
+      <DependentUpon>Mathmatrix.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Snake.xaml.cs">
       <DependentUpon>Snake.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Mathmatrix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Snake.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

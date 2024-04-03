@@ -99,5 +99,11 @@ namespace Points
         {
             uodateparalel();
         }
+
+        private void Matrix_Click(object sender, RoutedEventArgs e)
+        {
+            Mathmatrix mathmatrix = new Mathmatrix();
+            mathmatrix.itself(mathmatrix);
+        }
     }
 }

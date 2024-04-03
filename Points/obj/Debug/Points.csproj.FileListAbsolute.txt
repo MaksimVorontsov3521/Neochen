@@ -51,3 +51,5 @@ X:\program\Points\Points\bin\Debug\System.ValueTuple.xml
 X:\program\Points\Points\obj\Debug\Points.csproj.CopyComplete
 X:\program\Points\Points\obj\Debug\2Arrays.g.cs
 X:\program\Points\Points\obj\Debug\2Arrays.baml
+X:\program\Points\Points\obj\Debug\Mathmatrix.g.cs
+X:\program\Points\Points\obj\Debug\Mathmatrix.baml

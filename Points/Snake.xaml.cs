@@ -40,55 +40,19 @@ namespace Points
 
         async void movetail(Rectangle part,TheSnake the,TheSnake father,TheSnake head)
         {
-            await Task.Delay(1);
             int[,] boof = new int[2, 2];
             while (a == true)
             {
                 boof = father.coordinates;
-                await Task.Delay(250);
+                await Task.Delay(240);
                 the.coordinates[0, 0] = boof[0, 0];
                 the.coordinates[1, 0] = boof[1, 0];
                 the.coordinates[0, 1] = boof[0, 1];
                 the.coordinates[1, 1] = boof[1, 1];
-                await Task.Delay(1);
                 Canvas.SetLeft(part, the.coordinates[0, 0]);
                 Canvas.SetTop(part, the.coordinates[0, 1]);
-                a=endgame(head,the);
+                //a=endgame(head,the);
             }
-        }
-        bool endgame(TheSnake head,TheSnake the)
-        {
-            bool cx = false, cy = false;
-            for (int i = head.coordinates[0, 0]; i < head.coordinates[1, 0]; i++)
-            {
-                if (the.coordinates[1,0] == i)
-                {
-                    cx = true;
-                    break;
-                }
-                else
-                {
-                    cx = false;
-                }
-            }
-            for (int i = head.coordinates[0, 1]; i < head.coordinates[1, 1]; i++)
-            {
-                if (the.coordinates[0, 1] == i)
-                {
-                    cy = true;
-                    break;
-                }
-                else
-                {
-                    cy = false;
-                }
-            }
-            if (cx == true & cy == true)
-            {
-                MessageBox.Show("Fuck you");
-                return false;
-            }
-            return true;
         }
         private TheSnake Addtail(TheSnake TheSnake,TheSnake lasttail,TheSnake TheHead)
         {
